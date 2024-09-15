@@ -1,0 +1,79 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Language {
+  id: Float!
+  name: String!
+}
+
+type Country {
+  id: Float!
+  name: String!
+  alpha2: String!
+  alpha3: String!
+  language: Language!
+}
+
+type Region {
+  id: Float!
+  name: String!
+  country: Country!
+}
+
+type City {
+  id: Float!
+  name: String!
+  region: Region!
+}
+
+type Currency {
+  id: Float!
+  code: String!
+  name: String!
+}
+
+type Bank {
+  id: Float!
+  name: String!
+  treasury: Float!
+  currencies: [Currency!]!
+  location: City!
+  special: String
+}
+
+type Query {
+  countries(search: String, page: Int!, limit: Int!): [Country!]!
+  country(id: Int!): Country!
+  regions(search: String, page: Int!, limit: Int!): [Region!]!
+  region(id: Int!): Region!
+  cities(search: String, page: Int!, limit: Int!): [City!]!
+  city(id: Int!): City!
+  banks(search: String, page: Int!, limit: Int!): [Bank!]!
+  bank(id: Int!): Bank!
+  Currencys(search: String, page: Int!, limit: Int!): [Currency!]!
+  Currency(id: Int!): Currency!
+  languages(search: String, page: Int!, limit: Int!): [Language!]!
+  language(id: Int!): Language!
+}
+
+type Mutation {
+  createCountry(name: String!, alpha2: String!, alpha3: String!, languageId: Int!): Country!
+  updateCountry(id: Int!, name: String, alpha2: String, alpha3: String, languageId: Int): Country!
+  removeCountry(id: Int!): Boolean!
+  createRegion(name: String!, countryId: Int!): Region!
+  updateRegion(id: Int!, name: String!, countryId: Int!): Region!
+  removeRegion(id: Int!): Boolean!
+  createCity(name: String!, regionId: Int!): City!
+  updateCity(id: Int!, name: String!, regionId: Int!): City!
+  removeCity(id: Int!): Boolean!
+  createBank(name: String!, locationId: Int!, treasury: Float!, special: String, currenciesId: [Int!]!): Bank!
+  updateBank(id: Int!, name: String!, locationId: Int!, treasury: Float!, special: String, currenciesId: [Int!]): Bank!
+  removeBank(id: Int!): Boolean!
+  createCurrency(name: String!, code: String!): Currency!
+  updateCurrency(id: Int!, name: String!, code: String!): Currency!
+  removeCurrency(id: Int!): Boolean!
+  createlanguage(name: String!): Language!
+  updatelanguage(id: Int!, name: String!): Language!
+  removelanguage(id: Int!): Boolean!
+}
